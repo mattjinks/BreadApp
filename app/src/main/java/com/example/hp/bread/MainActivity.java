@@ -11,7 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,30 +24,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView bottomNavigationView =
-                (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        ImageView loadingScreen = (ImageView) findViewById(R.id.loading_icon);
+        loadingScreen.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.ic_search:
-                        Intent searchIntent = new Intent(MainActivity.this,
-                                SearchActivity.class);
-                        break;
-                    case R.id.ic_user_account:
-                        Intent accountIntent = new Intent(MainActivity.this,
-                                UserAccountActivity.class);
-                        startActivity(accountIntent);
-                        break;
-                    case R.id.ic_favorites:
-                        Intent favIntent = new Intent(MainActivity.this,
-                                FavoritesActivity.class);
-                        startActivity(favIntent);
-                        break;
-                }
-
-                return false;
+            public void onClick(View view) {
+                Intent searchResultsIntent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(searchResultsIntent);
             }
         });
     }
